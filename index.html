@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>EcoWaste</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"/>
+
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif}
+    body{background:#ececec;min-height:100vh;display:flex;justify-content:center;align-items:center;padding:20px}
+    .phone{width:390px;background:#f5f5f5;border-radius:35px;overflow:hidden;box-shadow:0 15px 40px rgba(0,0,0,0.18);border:6px solid #242424;position:relative}
+    .header{background:#2d7f12;color:white;padding:20px 22px 28px;position:relative}
+    .topbar{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px}
+    .topbar i{font-size:24px;cursor:pointer}
+    .logo{font-size:34px;font-weight:700;text-align:center;flex:1}
+    .logo span{color:#d6ff84}
+    .content{padding:20px;min-height:500px}
+    .welcome h2{font-size:24px;color:#2d7f12;font-weight:700;margin-bottom:5px}
+    .welcome p{font-size:14px;color:#4d4d4d;line-height:1.6}
+    .point-card{margin-top:20px;background:linear-gradient(90deg,#4d9914,#efd93d);border-radius:22px;padding:22px;color:white;display:flex;justify-content:space-between;align-items:center;box-shadow:0 8px 20px rgba(0,0,0,0.1)}
+    .point-card h4{font-size:14px;font-weight:500;margin-bottom:8px}
+    .point-card h1{font-size:42px;font-weight:700}
+    .coin-icon{font-size:60px;opacity:0.95}
+    .menu-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:28px;text-align:center}
+    .menu-item{display:flex;flex-direction:column;align-items:center;gap:8px;font-size:12px;font-weight:600;color:#333;cursor:pointer}
+    .menu-box{width:68px;height:68px;border-radius:14px;background:#dff0cf;border:1px solid #9ac27e;display:flex;justify-content:center;align-items:center;font-size:30px;color:#2d7f12;transition:0.3s;box-shadow:0 4px 10px rgba(0,0,0,0.05)}
+    .menu-box:hover{transform:translateY(-4px);background:#cde9b6}
+    .section-title{margin-top:30px;margin-bottom:18px;font-size:20px;font-weight:700;color:#222}
+    .category-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:15px;text-align:center}
+    .category-item{display:flex;flex-direction:column;align-items:center;gap:8px;font-size:12px;font-weight:600;color:#333}
+    .category-box{width:70px;height:70px;border-radius:14px;background:#edf5e3;border:1px solid #bfd6aa;display:flex;justify-content:center;align-items:center;font-size:34px;transition:0.3s}
+    .category-box:hover{transform:scale(1.05)}
+    .info-box{margin-top:28px;background:#d6f6fb;border-radius:18px;padding:18px;display:flex;justify-content:space-between;align-items:center;gap:15px}
+    .info-box p{font-size:14px;line-height:1.7;color:#1f1f1f;font-weight:500}
+    .earth{font-size:58px}
+    @media(max-width:420px){.phone{width:100%}}
+    .page-section{display:none}
+    .page-section.active{display:block}
+    .waste-item{display:flex;justify-content:space-between;align-items:center;background:#f9f9f9;padding:12px;border-radius:10px;margin-bottom:10px}
+    .waste-item .info{flex:1}
+    .waste-item .info .name{font-weight:600;color:#2d7f12;font-size:14px}
+    .waste-item .info .points{font-size:12px;color:#666}
+    .waste-item input{width:60px;padding:8px;border:1px solid #ddd;border-radius:6px;text-align:center}
+    .btn-submit{background:#2d7f12;color:white;border:none;padding:12px;border-radius:8px;width:100%;font-size:14px;font-weight:600;cursor:pointer;margin-top:10px}
+    .btn-submit:hover{background:#1e5e0d}
+    #totalPoinSetor{font-weight:700;color:#2d7f12}
+    .history-item{background:#f9f9f9;border-radius:12px;padding:12px;margin-bottom:10px;border-left:4px solid #2d7f12}
+    .history-item .date{font-size:11px;color:#888}
+    .history-item .category{font-weight:600;color:#2d7f12;margin:5px 0}
+    .history-item .points{font-size:13px;color:#333}
+    .education-content h4{color:#2d7f12;margin-bottom:10px}
+    .education-content p{font-size:13px;line-height:1.6;color:#444;margin-bottom:12px}
+    .education-content ul{margin-left:15px;margin-bottom:10px}
+    .education-content li{font-size:13px;margin-bottom:5px;color:#555}
+    .exchange-btn{background:#2d7f12;color:white;border:none;padding:15px;border-radius:10px;font-size:14px;font-weight:600;cursor:pointer;transition:0.3s;text-align:left;padding-left:15px;margin-bottom:12px;width:100%}
+    .exchange-btn:hover{background:#1e5e0d}
+    .exchange-info{font-size:12px;color:#666;margin-top:3px}
+    .success-message{font-size:13px;font-weight:500;margin-top:10px;min-height:20px;text-align:center}
+  </style>
+</head>
+
+<body>
+  <div class="phone">
+    <div class="header">
+      <div class="topbar">
+        <i class="fa-solid fa-arrow-left" id="btnBack"></i>
+        <div class="logo">Eco<span>Waste</span></div>
+        <i class="fa-solid fa-bars" id="btnMenu"></i>
+      </div>
+    </div>
+
+    <div class="content">
+      <div class="page-section active" id="pageHome">
+        <div class="welcome">
+          <h2>Hallo, Selamat Datang</h2>
+          <p>Sampah bukan akhir, tapi awal perubahan.</p>
+        </div>
+
+        <div class="point-card">
+          <div>
+            <h4>Total Point Kamu</h4>
+            <h1 id="totalPoints">1.275 <span style="font-size:24px;">poin</span></h1>
+          </div>
+          <div class="coin-icon">🪙</div>
+        </div>
+
+        <div class="menu-grid">
+          <div class="menu-item" id="menuSetor">
+            <div class="menu-box">♻</div>
+            <span>Setor Sampah</span>
+          </div>
+
+          <div class="menu-item" id="menuRiwayat">
+            <div class="menu-box">🧾</div>
+            <span>Riwayat</span>
+          </div>
+
+          <div class="menu-item" id="menuTukar">
+            <div class="menu-box">💰</div>
+            <span>Tukar Point</span>
+          </div>
+
+          <div class="menu-item" id="menuEdukasi">
+            <div class="menu-box">📖</div>
+            <span>Edukasi</span>
+          </div>
+        </div>
+
+        <div class="section-title">Kategori Sampah</div>
+        <div class="category-grid">
+          <div class="category-item">
+            <div class="category-box">🧴</div>
+            <span>Botol Plastik</span>
+          </div>
+          <div class="category-item">
+            <div class="category-box">🛍</div>
+            <span>Kresek</span>
+          </div>
+          <div class="category-item">
+            <div class="category-box">🥤</div>
+            <span>Gelas Plastik</span>
+          </div>
+          <div class="category-item">
+            <div class="category-box">🗑</div>
+            <span>Lainnya</span>
+          </div>
+        </div>
+
+        <div class="info-box">
+          <p>Ayo bersama menjaga lingkungan mulai dari sekarang demi menciptakan masa depan yang bersih, sehat, dan lebih baik!</p>
+          <div class="earth">🌍</div>
+        </div>
+      </div>
+
+      <div class="page-section" id="pageSetor">
+        <div class="section-title">Setor Sampah</div>
+        <div style="background:white;border-radius:15px;padding:15px;margin-bottom:15px;">
+          <p style="font-size:13px;color:#666;margin-bottom:15px;">Pilih jumlah untuk setiap kategori sampah:</p>
+          
+          <div class="waste-item">
+            <div class="info">
+              <div class="name">Botol Plastik</div>
+              <div class="points">10 poin per pcs</div>
+            </div>
+            <input type="number" id="qtyBotol" min="0" value="0" data-category="Botol Plastik" data-points="10">
+          </div>
+
+          <div class="waste-item">
+            <div class="info">
+              <div class="name">Kresek</div>
+              <div class="points">5 poin per pcs</div>
+            </div>
+            <input type="number" id="qtyKresek" min="0" value="0" data-category="Kresek" data-points="5">
+          </div>
+
+          <div class="waste-item">
+            <div class="info">
+              <div class="name">Gelas Plastik</div>
+              <div class="points">8 poin per pcs</div>
+            </div>
+            <input type="number" id="qtyGelas" min="0" value="0" data-category="Gelas Plastik" data-points="8">
+          </div>
+
+          <div class="waste-item">
+            <div class="info">
+              <div class="name">Lainnya</div>
+              <div class="points">15 poin per pcs</div>
+            </div>
+            <input type="number" id="qtyLainnya" min="0" value="0" data-category="Lainnya" data-points="15">
+          </div>
+
+          <div style="margin-top:15px;padding-top:15px;border-top:1px solid #eee;">
+            <p style="font-size:14px;">Total Poin: <strong id="totalPoinSetor">0</strong> poin</p>
+          </div>
+
+          <button class="btn-submit" id="btnSetor">Setor Sekarang</button>
+          <p id="setorMessage" style="margin-top:10px;font-size:13px;"></p>
+        </div>
+      </div>
+
+      <div class="page-section" id="pageRiwayat">
+        <div class="section-title">Riwayat Setoran</div>
+        <div id="riwayatList">
+          <p style="text-align:center;color:#888;">Belum ada riwayat setoran</p>
+        </div>
+      </div>
+
+      <div class="page-section" id="pageTukar">
+        <div class="section-title">Tukar Point</div>
+        <div style="background:white;border-radius:15px;padding:15px;">
+          <p><strong>Total Poin Anda:</strong> <span id="modalTotalPoints">1.275</span> poin</p>
+          
+          <button class="exchange-btn" data-amount="100" data-reward="10000">
+            100 Poin = Rp 10.000
+            <div class="exchange-info">Tukar sekarang</div>
+          </button>
+          <button class="exchange-btn" data-amount="200" data-reward="25000">
+            200 Poin = Rp 25.000
+            <div class="exchange-info">Tukar sekarang</div>
+          </button>
+          <button class="exchange-btn" data-amount="500" data-reward="60000">
+            500 Poin = Rp 60.000
+            <div class="exchange-info">Tukar sekarang</div>
+          </button>
+          <button class="exchange-btn" data-amount="1000" data-reward="120000">
+            1000 Poin = Rp 120.000
+            <div class="exchange-info">Tukar sekarang</div>
+          </button>
+          
+          <p class="success-message" id="successMessage"></p>
+        </div>
+      </div>
+
+      <div class="page-section" id="pageEdukasi">
+        <div class="section-title">Edukasi Sampah Plastik</div>
+        <div class="education-content">
+          <h4>Dampak Sampah Plastik</h4>
+          <p>Sampah plastik menjadi salah satu masalah lingkungan paling urgente di dunia. Dengan waktu terurai yang bisa mencapai 450 tahun, plastik menumpuk di lingkungan dan mencemari ekosistem.</p>
+
+          <h4>Jenis-jenis Sampah Plastik</h4>
+          <ul>
+            <li><strong>HDPE</strong> - Botol plastik, kantong belanja</li>
+            <li><strong>PET</strong> - Gelas minum, botol air</li>
+            <li><strong>PVC</strong> - Pipa, plastik keras</li>
+            <li><strong>LDPE</strong> - Kemasan makanan, kresek</li>
+          </ul>
+
+          <h4>Dampak terhadap Kesehatan</h4>
+          <p>Sampah plastik dapat mengeluarkan bahan kimia berbahaya seperti BPA dan phthalates yang berpotensi menyebabkan gangguan hormon, kanker, dan masalah perkembangan anak.</p>
+
+          <h4>Cara Mengurangi Sampah Plastik</h4>
+          <ul>
+            <li>Gunakan kantong belanja yang bisa dipakai ulang</li>
+            <li>Bawa botol air dari rumah</li>
+            <li>Gunakan wadah makanan glass/steel</li>
+            <li>Pilih produk dengan kemasan minimal</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    let totalPoints = 1275;
+    let historyData = [];
+
+    const totalPointsEl = document.getElementById('totalPoints');
+    const modalTotalPoints = document.getElementById('modalTotalPoints');
+    const successMessage = document.getElementById('successMessage');
+    const riwayatList = document.getElementById('riwayatList');
+    const pageSections = document.querySelectorAll('.page-section');
+
+    function updatePointsDisplay() {
+      const formatted = totalPoints.toLocaleString('id-ID');
+      totalPointsEl.innerHTML = `${formatted} <span style="font-size:24px;">poin</span>`;
+      modalTotalPoints.textContent = formatted;
+    }
+
+    function showPage(pageId) {
+      pageSections.forEach(section => {
+        section.classList.remove('active');
+      });
+      document.getElementById(pageId).classList.add('active');
+    }
+
+    function renderHistory() {
+      if(historyData.length === 0) {
+        riwayatList.innerHTML = '<p style="text-align:center;color:#888;">Belum ada riwayat setoran</p>';
+        return;
+      }
+      riwayatList.innerHTML = historyData.map(item => `
+        <div class="history-item">
+          <div class="date">${item.date}</div>
+          <div class="category">${item.category} (${item.quantity} pcs)</div>
+          <div class="points">+${item.points} poin</div>
+        </div>
+      `).join('');
+    }
+
+    function calculateTotalPoints() {
+      const inputs = document.querySelectorAll('#pageSetor input[type="number"]');
+      let total = 0;
+      inputs.forEach(input => {
+        const qty = parseInt(input.value) || 0;
+        const points = parseInt(input.dataset.points);
+        total += qty * points;
+      });
+      document.getElementById('totalPoinSetor').textContent = total.toLocaleString('id-ID');
+      return total;
+    }
+
+    document.getElementById('btnBack').addEventListener('click', () => {
+      if(document.getElementById('pageHome').classList.contains('active')) {
+        alert('Halaman sebelumnya');
+      } else {
+        showPage('pageHome');
+      }
+    });
+
+    document.getElementById('btnMenu').addEventListener('click', () => {
+      alert('Menu navigasi akan ditampilkan');
+    });
+
+    document.getElementById('menuSetor').addEventListener('click', () => {
+      showPage('pageSetor');
+      document.getElementById('setorMessage').textContent = '';
+      document.querySelectorAll('#pageSetor input[type="number"]').forEach(i => i.value = '0');
+      calculateTotalPoints();
+    });
+
+    document.getElementById('menuRiwayat').addEventListener('click', () => {
+      showPage('pageRiwayat');
+      renderHistory();
+    });
+
+    document.getElementById('menuTukar').addEventListener('click', () => {
+      showPage('pageTukar');
+      successMessage.textContent = '';
+    });
+
+    document.getElementById('menuEdukasi').addEventListener('click', () => {
+      showPage('pageEdukasi');
+    });
+
+    document.querySelectorAll('#pageSetor input[type="number"]').forEach(input => {
+      input.addEventListener('input', calculateTotalPoints);
+    });
+
+    document.getElementById('btnSetor').addEventListener('click', () => {
+      const inputs = document.querySelectorAll('#pageSetor input[type="number"]');
+      let hasItems = false;
+      let totalPointGain = 0;
+      let setoranItems = [];
+
+      inputs.forEach(input => {
+        const qty = parseInt(input.value) || 0;
+        const points = parseInt(input.dataset.points);
+        const category = input.dataset.category;
+        
+        if(qty > 0) {
+          hasItems = true;
+          totalPointGain += qty * points;
+          setoranItems.push({category, qty, points: qty * points});
+        }
+      });
+
+      if(!hasItems) {
+        document.getElementById('setorMessage').textContent = 'Silakan masukkan jumlah sampah';
+        document.getElementById('setorMessage').style.color = '#d32f2f';
+        return;
+      }
+
+      totalPoints += totalPointGain;
+      updatePointsDisplay();
+
+      const now = new Date();
+      const dateStr = now.toLocaleDateString('id-ID', {day: 'numeric', month: 'long', year: 'numeric'}) + ' ' + now.toLocaleTimeString('id-ID', {hour: '2-digit', minute:'2-digit'});
+
+      setoranItems.forEach(item => {
+        historyData.unshift({
+          date: dateStr,
+          category: item.category,
+          quantity: item.qty,
+          points: item.points
+        });
+      });
+
+      document.getElementById('setorMessage').textContent = `Berhasil setor ${setoranItems.length} jenis sampah! +${totalPointGain.toLocaleString('id-ID')} poin`;
+      document.getElementById('setorMessage').style.color = '#2d7f12';
+
+      inputs.forEach(i => i.value = '0');
+      calculateTotalPoints();
+
+      setTimeout(() => {
+        showPage('pageHome');
+      }, 1500);
+    });
+
+    document.querySelectorAll('.exchange-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const amount = parseInt(btn.dataset.amount);
+        const reward = parseInt(btn.dataset.reward);
+
+        if(totalPoints >= amount) {
+          totalPoints -= amount;
+          updatePointsDisplay();
+          successMessage.textContent = `Berhasil menukar ${amount.toLocaleString('id-ID')} poin! Anda mendapatkan Rp ${reward.toLocaleString('id-ID')}`;
+          successMessage.style.color = '#2d7f12';
+          setTimeout(() => {
+            showPage('pageHome');
+            successMessage.textContent = '';
+          }, 2000);
+        } else {
+          successMessage.textContent = `Poin tidak mencukupi! Anda hanya memiliki ${totalPoints.toLocaleString('id-ID')} poin.`;
+          successMessage.style.color = '#d32f2f';
+        }
+      });
+    });
+
+    calculateTotalPoints();
+    updatePointsDisplay();
+  </script>
+</body>
+</html>
